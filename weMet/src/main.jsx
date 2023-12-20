@@ -12,6 +12,9 @@ import ForgotPassword from './pages/ForgotPassword.jsx';
 import store from './store.jsx';
 import { Provider } from 'react-redux';
 import firebaseConfig from './authentication/firebaseConfig.jsx';
+import 'react-toastify/dist/ReactToastify.css';
+import ProfileInfo from './pages/ProfileInfo.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -29,12 +32,16 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home/>,
+  },
+  {
+    path: "/profileinfo",
+    element: <ProfileInfo />,
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode store={store}>
-    <Provider>
+  <React.StrictMode>
+    <Provider store={store}>
     <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>,

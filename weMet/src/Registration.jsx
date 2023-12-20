@@ -6,6 +6,7 @@ import { RiEyeFill, RiEyeCloseFill } from 'react-icons/ri'
 import { ToastContainer, toast } from 'react-toastify';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
+import DefaultProfile from '../src/assets/ProfilePicture/DefaultProfilePic.png'
 
 
 const Registration = () => {
@@ -74,7 +75,7 @@ const Registration = () => {
             setPassword('')
             setTimeout(() => {
               navigate('/')
-            }, 1000)
+            }, 3000)
 
           }).then(() => {
             set(ref(db, 'users/' + user.user.uid), {
@@ -100,7 +101,7 @@ const Registration = () => {
         <div className='w-[250px] h-[25px] absolute top-0 left-0'>
       <ToastContainer
           position="top-center"
-          autoClose={1000}
+          autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

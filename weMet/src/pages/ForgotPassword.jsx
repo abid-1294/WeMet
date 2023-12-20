@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail, signInWithEmailLink } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 
 const ForgotPassword = () => {
@@ -15,7 +15,7 @@ const ForgotPassword = () => {
     setEmailerr('')
   }
 
-  const handleSubmit = () =>{
+  const handleSignin = () =>{
     if(!email){
       setEmailerr('Email is required*');
     }else{
@@ -70,7 +70,7 @@ const ForgotPassword = () => {
                 }
                 <p className='text-red-500 font-Nun font-black animate-pulse mt-[40px] '>{error}</p>
                 <div className='mt-[20px] flex'>
-                <button onClick={handleSubmit} className='w-[100px] h-[60px] mr-[20px] text-white font-Osans text-[16px] font-semibold bg-[#0066FF] rounded-lg px-[5px] py-[5px] cursor-pointer'>Reset</button>
+                <button onClick={handleSignin} className='w-[100px] h-[60px] mr-[20px] text-white font-Osans text-[16px] font-semibold bg-[#0066FF] rounded-lg px-[5px] py-[5px] cursor-pointer'>Reset</button>
 
                 <button className='w-[180px] h-[60px] text-white font-Osans text-[16px] font-semibold bg-[#0066FF] rounded-lg px-[5px] py-[5px] cursor-pointer'><Link to='/'>Back To Login</Link></button>
                 </div>

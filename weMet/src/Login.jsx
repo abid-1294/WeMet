@@ -28,18 +28,19 @@ function Login() {
     setPassword(e.target.value);
     setPassworderr('')
   }
-  const handleSignin = () =>{
-    if(!email){
+
+  const handleSignin = () => {
+    if (!email) {
       setEmailerr('Email is required*');
-    }else{
-      if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+    } else {
+      if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
         setEmailerr('Email is not valid!')
       }
     }
-    if(!password){
+    if (!password) {
       setPassworderr('Shame! You have no privacy*');
     }
-    if(email && password && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+    if (email && password && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       signInWithEmailAndPassword(auth, email, password)
         .then((user) => {
           toast.success('Login successfully done...!');
@@ -49,19 +50,19 @@ function Login() {
           setEmail('')
           setPassword('')
           setError('')
-          setTimeout(() =>{
+          setTimeout(() => {
             navigate('/home')
-            },1000)          
+          }, 3000)
         })
         .catch((error) => {
           const errorCode = error.code;
           console.log(errorCode);
-          if(errorCode.includes('auth/invalid-login-credentials')){
+          if (errorCode.includes('auth/invalid-credential')) {
             setError('Please give the correct mail & password...!');
             setPassword('')
           }
         });
-          }
+    }
   }
 
 
@@ -71,7 +72,7 @@ function Login() {
         toast.success('Login successfully done...!');
         setTimeout(() => {
           navigate('/home')
-        }, 1000)
+        }, 3000)
       }).catch((error) => {
         const errorCode = error.code;
         console.log(errorCode);
@@ -83,7 +84,7 @@ function Login() {
         <div className='w-[250px] h-[25px] absolute top-0 left-0'>
           <ToastContainer
             position="top-center"
-            autoClose={1000}
+            autoClose={3000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick
@@ -136,6 +137,7 @@ function Login() {
                 <p className='text-red-500 w-[400px] font-Nun font-black animate-pulse '>{passworderr}</p>
               }
             </div>
+            <p className='text-red-500 font-Nun font-black animate-pulse mt-[40px] '>{error}</p>
 
             <div className='w-[300px] mx-auto mt-[55px] mb-[20px]'>
               <button onClick={handleSignin} className='w-[280px] h-[60px]  bg-[#76fff4] bg-opacity-80 hover:bg-opacity-100 font-Osans text-[20.90px] font-semibold rounded-lg px-[50px] py-[10px] cursor-pointer '><Link to='/home'>Login to Continue</Link></button>
